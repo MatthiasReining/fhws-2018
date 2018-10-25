@@ -17,7 +17,7 @@ public class QueryParamServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("GET");
-		doProcess(request, response);		
+		doProcess(request, response);
 	}
 
 	@Override
@@ -25,19 +25,18 @@ public class QueryParamServlet extends HttpServlet {
 		System.out.println("POST");
 		doProcess(req, response);
 	}
-	
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String query = request.getQueryString();
-		
+
 		response.getWriter().println("query: " + query + "\n\n");
 		if (query.contains("fhws"))
 			response.getWriter().println("Hallo FHWS");
 		else
 			response.getWriter().println("Hello anonymous");
-		
+
 		response.getWriter().println("\n\nhave a nice day");
 	}
-	
-	
 
 }
