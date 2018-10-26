@@ -1,36 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="./template.xhtml">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" template="./template.xhtml">
 
-	<ui:define name="content">
-		<h:form>
+    <ui:define name="content">
+        
+            <h:form>
 
-			<h:dataTable value="#{students.students}" var="s">
+                <h:dataTable value="#{students.students}" var="s" class="table">
 
-				<h:column>
-					<f:facet name="header">first name</f:facet>
-                        #{s.firstName}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">first name</f:facet>
+                            #{s.firstName}
+                    </h:column>
 
-				<h:column>
-					<f:facet name="header">last name</f:facet>
-                        #{s.lastName}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">last name</f:facet>
+                            #{s.lastName}
+                    </h:column>
 
-				<h:column>
-					<f:facet name="header">student id</f:facet>
-                        #{s.studentId}
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">student id</f:facet>
+                            #{s.studentId}
+                    </h:column>
 
-			</h:dataTable>
+                </h:dataTable>
 
-			<hr />
+                <hr />
 
+                <h:commandButton styleClass="btn btn-primary" action="create-student" value="new student"/>
+				
 
-		</h:form>
+            </h:form>
 
-	</ui:define>
+    </ui:define>
 
 </ui:composition>
