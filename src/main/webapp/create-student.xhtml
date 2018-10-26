@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="./template.xhtml">
+
+
+	<ui:define name="content">
+		<h:form>
+
+			<h1>New Student</h1>
+			<h:outputLabel value="first name" />
+
+			<h:inputText value="#{studentBean.currentStudent.firstName}" />
+			<br />
+			<h:outputLabel value="last name" />
+			<h:inputText value="#{studentBean.currentStudent.lastName}"
+				id="lastName"></h:inputText>
+			<h:message for="lastName"></h:message>
+			<br />
+			<h:outputLabel value="student id" />
+			<h:inputText value="#{studentBean.currentStudent.studentId}" id="studentId">
+                            <f:validateLength maximum="3"></f:validateLength>
+                        </h:inputText>
+                        <h:message for="studentId"></h:message>
+
+			<h:commandButton value="save" action="#{studentBean.save}"></h:commandButton>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
