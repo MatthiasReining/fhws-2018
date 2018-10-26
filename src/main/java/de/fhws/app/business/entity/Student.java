@@ -2,11 +2,16 @@ package de.fhws.app.business.entity;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class Student implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String firstName;
+	
+	@NotNull @NotEmpty
 	private String lastName;
 	private String studentId;
 
