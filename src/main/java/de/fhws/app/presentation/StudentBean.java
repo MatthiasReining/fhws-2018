@@ -25,7 +25,7 @@ public class StudentBean implements Serializable {
 
 		students.addStudent(currentStudent);
 
-		return "student-list";
+		return "student-list?faces-redirect=true";
 
 	}
 
