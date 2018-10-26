@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:head>
+	<title>FHWS Java EE App</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+
+	#{counterObject.counter}
+	
+	<h:dataTable value="#{students}" var="student">
+
+			<h:column>
+				<f:facet name="header">first name</f:facet>
+				#{student.firstName}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">last name</f:facet>
+				#{student.lastName}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">student id</f:facet>
+				#{student.studentId}
+			</h:column>
+
+		</h:dataTable>
+
+		<hr />
+
+		<h1>Alterative with ui:repat</h1>
+		<ui:repeat var="student" value="#{students}">
+	
+			#{student.firstName}  #{student.lastName} <br />
+
+		</ui:repeat>
+	</h:form>
+</h:body>
+
+</html>
