@@ -32,8 +32,8 @@ import javax.sql.DataSource;
  * @author matthias
  *
  */
-@WebServlet("jdbc")
-public class JDBCServlet extends HttpServlet {
+@WebServlet("tx")
+public class TxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "java:jboss/datasources/FHWSDS")
@@ -42,18 +42,14 @@ public class JDBCServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("JDBC Servlet");
+		
 
 		try {
 			Connection conn = dataSource.getConnection();
+			conn.setAutoCommit(false);
 
-			ResultSet rs = conn.createStatement().executeQuery("SELECT id, name from TEST");
-			while (rs.next()) {
-				long id = rs.getLong(1);
-				String name = rs.getString(2);
-
-				resp.getWriter().println("id: " + id + " | name: " + name);
-			}
-			conn.close();
+			conn.createStatement().execute("INSERT INTO TEST VALUES(32, 'Hey FHWS');");
+			conn.commit();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
