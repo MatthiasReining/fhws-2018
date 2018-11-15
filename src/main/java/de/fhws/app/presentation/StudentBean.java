@@ -20,9 +20,6 @@ public class StudentBean implements Serializable {
 	Students students;
 
 	public String save() {
-		System.out.println("save");
-		System.out.println(currentStudent.getLastName());
-
 		students.addStudent(currentStudent);
 
 		return "student-list?faces-redirect=true";
