@@ -1,12 +1,18 @@
 package de.fhws.app.business.student.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -17,23 +23,27 @@ import javax.validation.constraints.Size;
 public class Student implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String FIND_ALL = "Student.findAll";
 
 	@Id
 	@GeneratedValue
 	private long id;
 
-	@Size(max=100)
+	@Size(max = 100)
 	private String firstName;
 
 	@NotNull
 	@NotEmpty
-	@Size(min=2, max=100)
+	@Size(min = 2, max = 100)
 	private String lastName;
-	
-	@Pattern(regexp="\\w{2}\\d{4}")
+
+	@Pattern(regexp = "\\w{2}\\d{4}")
 	private String studentId;
+
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name = "student_id")
+	private List<ChangeLog> changeLogs = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -65,6 +75,14 @@ public class Student implements Serializable {
 
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
+	}
+
+	public List<ChangeLog> getChangeLogs() {
+		return changeLogs;
+	}
+
+	public void setChangeLogs(List<ChangeLog> changeLogs) {
+		this.changeLogs = changeLogs;
 	}
 
 }

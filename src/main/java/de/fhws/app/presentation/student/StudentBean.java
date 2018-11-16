@@ -32,10 +32,15 @@ public class StudentBean implements Serializable {
 	void init() {
 		service = new StudentService(em, tx);
 	}
+	
+	public String initNewStudent() {
+		currentStudent = new Student();
+		return "student";
+	}
 
 	public String load(long id) {
 		currentStudent = service.find(id);
-		return "student";
+		return "student?faces-redirect=true";
 	}
 
 	public String save() {

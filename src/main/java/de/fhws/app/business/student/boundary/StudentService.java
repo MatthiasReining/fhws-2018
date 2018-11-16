@@ -1,5 +1,6 @@
 package de.fhws.app.business.student.boundary;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import de.fhws.app.business.student.entity.ChangeLog;
 import de.fhws.app.business.student.entity.Student;
 
 public class StudentService {
@@ -37,6 +39,13 @@ public class StudentService {
 	public Student save(Student currentStudent) {
 		try {
 			tx.begin();
+
+			ChangeLog cl = new ChangeLog();
+			cl.setAction(currentStudent.getId() == 0 ? "created" : "modified");
+			cl.setModifiedTime(new Date());
+
+			currentStudent.getChangeLogs().add(cl);
+			
 			currentStudent = em.merge(currentStudent);
 			tx.commit();
 			return currentStudent;
