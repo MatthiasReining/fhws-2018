@@ -27,19 +27,19 @@ public class InitServlet extends HttpServlet {
 		Student s = new Student();
 		s.setFirstName("Max");
 		s.setLastName("Mustermann");
-		s.setStudentId("34567890");
+		s.setMatriculationId("34567890");
 		students.addStudent(s);
 
 		s = new Student();
 		s.setFirstName("John");
 		s.setLastName("Doe");
-		s.setStudentId("87654");
+		s.setMatriculationId("87654");
 		students.addStudent(s);
 
 		s = new Student();
 		s.setFirstName("Mario");
 		s.setLastName("Rossi");
-		s.setStudentId("54234876543");
+		s.setMatriculationId("54234876543");
 		students.addStudent(s);
 
 		

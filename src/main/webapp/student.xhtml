@@ -24,11 +24,11 @@
 			</div>
 
 			<div class="form-group">
-				<h:outputLabel value="student id" />
-				<h:inputText value="#{studentBean.currentStudent.studentId}"
-					id="studentId" styleClass="form-control">
+				<h:outputLabel value="matriculation id" />
+				<h:inputText value="#{studentBean.currentStudent.matriculationId}"
+					id="matriculationId" styleClass="form-control">
 				</h:inputText>
-				<h:message for="studentId"></h:message>
+				<h:message for="matriculationId"></h:message>
 			</div>
 
 			<h:commandButton value="save" action="#{studentBean.save}"

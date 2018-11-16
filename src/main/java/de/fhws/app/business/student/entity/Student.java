@@ -39,9 +39,9 @@ public class Student implements Serializable {
 	private String lastName;
 
 	@Pattern(regexp = "\\w{2}\\d{4}")
-	private String studentId;
+	private String matriculationId;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_id")
 	private List<ChangeLog> changeLogs = new ArrayList<>();
 
@@ -69,12 +69,12 @@ public class Student implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getStudentId() {
-		return studentId;
+	public String getMatriculationId() {
+		return matriculationId;
 	}
 
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+	public void setMatriculationId(String matriculationId) {
+		this.matriculationId = matriculationId;
 	}
 
 	public List<ChangeLog> getChangeLogs() {
@@ -83,6 +83,12 @@ public class Student implements Serializable {
 
 	public void setChangeLogs(List<ChangeLog> changeLogs) {
 		this.changeLogs = changeLogs;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", matriculationId="
+				+ matriculationId + ", changeLogs=" + changeLogs + "]";
 	}
 
 }

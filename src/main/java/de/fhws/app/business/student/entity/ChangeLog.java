@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ChangeLog {
@@ -15,6 +16,9 @@ public class ChangeLog {
 
 	private Date modifiedTime;
 	private String action;
+
+	@ManyToOne
+	private Student student;
 
 	public Long getId() {
 		return id;
@@ -38,6 +42,19 @@ public class ChangeLog {
 
 	public void setAction(String action) {
 		this.action = action;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	@Override
+	public String toString() {
+		return "ChangeLog [id=" + id + ", modifiedTime=" + modifiedTime + ", action=" + action + "]";
 	}
 
 }
