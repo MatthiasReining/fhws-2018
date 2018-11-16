@@ -24,7 +24,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -33,6 +33,16 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- for CalculationClientApp -->
+		<!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-client-all -->
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-client-all</artifactId>
+			<version>14.0.1.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency> <groupId>org.wildfly</groupId> <artifactId>wildfly-ejb-client-bom</artifactId> 
+			<type>pom</type> <version>14.0.1.Final</version> <scope>test</scope> </dependency> -->
 	</dependencies>
 
 	<build>
