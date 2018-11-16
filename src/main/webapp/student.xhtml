@@ -7,34 +7,34 @@
 
 	<ui:define name="content">
 
-			<h:form>
-				<div class="form-group">
-					<h1>New Student</h1>
-					<h:outputLabel value="first name" />
+		<h:form>
+			<div class="form-group">
+				<h1>New Student</h1>
+				<h:outputLabel value="first name" />
+				<h:inputText value="#{studentBean.currentStudent.firstName}"
+					id="firstName" styleClass="form-control" />
+				<h:message for="firstName"></h:message>
+			</div>
 
-					<h:inputText value="#{studentBean.currentStudent.firstName}"
-						styleClass="form-control" />
-				</div>
+			<div class="form-group">
+				<h:outputLabel value="last name" />
+				<h:inputText value="#{studentBean.currentStudent.lastName}"
+					id="lastName" styleClass="form-control"></h:inputText>
+				<h:message for="lastName"></h:message>
+			</div>
 
-				<div class="form-group">
-					<h:outputLabel value="last name" />
-					<h:inputText value="#{studentBean.currentStudent.lastName}"
-						id="lastName" styleClass="form-control"></h:inputText>
-					<h:message for="lastName"></h:message>
-				</div>
+			<div class="form-group">
+				<h:outputLabel value="student id" />
+				<h:inputText value="#{studentBean.currentStudent.studentId}"
+					id="studentId" styleClass="form-control">
+				</h:inputText>
+				<h:message for="studentId"></h:message>
+			</div>
 
-				<div class="form-group">
-					<h:outputLabel value="student id" />
-					<h:inputText value="#{studentBean.currentStudent.studentId}"
-						id="studentId" styleClass="form-control">
-						<f:validateLength maximum="3"></f:validateLength>
-					</h:inputText>
-					<h:message for="studentId"></h:message>
-				</div>
+			<h:commandButton value="save" action="#{studentBean.save}"
+				styleClass="btn btn-primary"></h:commandButton>
 
-				<h:commandButton value="save" action="#{studentBean.save}" styleClass="btn btn-primary"></h:commandButton>
+		</h:form>
 
-			</h:form>
-		
 	</ui:define>
 </ui:composition>

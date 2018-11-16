@@ -9,6 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @NamedQueries(@NamedQuery(name = Student.FIND_ALL, query = "SELECT student FROM Student student"))
 @Entity
@@ -22,11 +24,15 @@ public class Student implements Serializable {
 	@GeneratedValue
 	private long id;
 
+	@Size(max=100)
 	private String firstName;
 
 	@NotNull
 	@NotEmpty
+	@Size(min=2, max=100)
 	private String lastName;
+	
+	@Pattern(regexp="\\w{2}\\d{4}")
 	private String studentId;
 
 	public long getId() {
