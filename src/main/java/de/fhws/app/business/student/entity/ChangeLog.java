@@ -1,5 +1,6 @@
 package de.fhws.app.business.student.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-public class ChangeLog {
+public class ChangeLog implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -20,7 +24,7 @@ public class ChangeLog {
 
 	@ManyToOne
 	private Student student;
-	
+
 	@PrePersist
 	public void prepareSave() {
 		modifiedTime = new Date();
@@ -50,6 +54,7 @@ public class ChangeLog {
 		this.action = action;
 	}
 
+	@XmlTransient
 	public Student getStudent() {
 		return student;
 	}
