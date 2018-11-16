@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 
 @Entity
 public class ChangeLog {
@@ -19,6 +20,11 @@ public class ChangeLog {
 
 	@ManyToOne
 	private Student student;
+	
+	@PrePersist
+	public void prepareSave() {
+		modifiedTime = new Date();
+	}
 
 	public Long getId() {
 		return id;
