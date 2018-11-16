@@ -28,8 +28,7 @@ public class Ejb1 {
 
 		em.merge(s);
 
-		//Exception is thrown !!!!
-		System.out.println(42 / 0);
+		throw new BusinessException("No Access allowed for the current uesr");
 
 	}
 
