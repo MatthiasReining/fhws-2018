@@ -2,13 +2,9 @@ package de.fhws.app.presentation.student;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
 import de.fhws.app.business.student.boundary.StudentService;
 import de.fhws.app.business.student.entity.Student;
@@ -20,18 +16,8 @@ public class StudentBean implements Serializable {
 
 	private Student currentStudent = new Student();
 
+	@EJB
 	StudentService service;
-
-	@PersistenceContext
-	EntityManager em;
-
-	@Resource
-	UserTransaction tx;
-
-	@PostConstruct
-	void init() {
-		service = new StudentService(em, tx);
-	}
 	
 	public String initNewStudent() {
 		currentStudent = new Student();

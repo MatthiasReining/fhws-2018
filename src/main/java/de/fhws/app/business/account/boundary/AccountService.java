@@ -2,17 +2,17 @@ package de.fhws.app.business.account.boundary;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import de.fhws.app.business.account.entity.Account;
 
+@Stateless
 public class AccountService {
 
+	@PersistenceContext
 	EntityManager em;
-
-	public AccountService(EntityManager em) {
-		this.em = em;
-	}
 
 	public boolean checkCredentials(String username, String password) {
 

@@ -2,11 +2,9 @@ package de.fhws.app.presentation.login;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import de.fhws.app.business.account.boundary.AccountService;
 
@@ -18,15 +16,8 @@ public class LoginBean implements Serializable {
 	private String username;
 	private String password;
 
-	@PersistenceContext
-	EntityManager em;
-
+	@EJB
 	AccountService account;
-
-	@PostConstruct
-	void init() {
-		account = new AccountService(em);
-	}
 
 	public String login() {
 
