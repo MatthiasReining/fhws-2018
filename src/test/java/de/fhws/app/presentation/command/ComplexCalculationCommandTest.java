@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.fhws.app.presentation.showcase.frontcontroller.comands.ComplexCalculationCommand;
+
 public class ComplexCalculationCommandTest {
 	
 	ComplexCalculationCommand cut;
