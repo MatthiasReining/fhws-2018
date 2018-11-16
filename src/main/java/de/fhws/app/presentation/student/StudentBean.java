@@ -2,6 +2,7 @@ package de.fhws.app.presentation.student;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import de.fhws.app.business.student.boundary.StudentService;
 import de.fhws.app.business.student.entity.Student;
 
 @Named
@@ -26,24 +28,38 @@ public class StudentBean implements Serializable {
 
 	@Inject
 	StudentListBean students;
-	
+
+	StudentService service;
+
 	@PersistenceContext
 	EntityManager em;
-	
+
 	@Resource
 	UserTransaction tx;
 
-	public String save() {
+	@PostConstruct
+	void init() {
+		System.out.println("in init; em=" + em);
+		service = new StudentService(em);
+	}
+
+	public String load(long id) {
+		currentStudent = service.find(id);
 		
+		return "student";
+	}
+
+	public String save() {
+
 		try {
 			tx.begin();
 			em.persist(currentStudent);
 			tx.commit();
-		} catch (NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
+		} catch (NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException
+				| HeuristicMixedException | HeuristicRollbackException e) {
 			throw new RuntimeException(e);
 		}
-		
-		
+
 		students.addStudent(currentStudent);
 
 		return "student-list?faces-redirect=true";

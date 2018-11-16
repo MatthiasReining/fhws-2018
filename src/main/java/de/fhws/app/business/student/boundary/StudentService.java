@@ -18,4 +18,8 @@ public class StudentService {
 		return em.createNamedQuery(Student.FIND_ALL, Student.class).getResultList();
 	}
 
+	public Student find(long id) {
+		return em.find(Student.class, id);
+	}
+
 }

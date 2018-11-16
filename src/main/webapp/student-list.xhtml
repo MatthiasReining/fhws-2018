@@ -24,12 +24,17 @@
                         <f:facet name="header">student id</f:facet>
                             #{s.studentId}
                     </h:column>
+                    
+                     <h:column>
+                        <f:facet name="header">action</f:facet>
+                            <h:commandButton value="edit" styleClass="btn btn-sm btn-primary" action="#{studentBean.load(s.id)}"></h:commandButton>
+                    </h:column>
 
                 </h:dataTable>
 
                 <hr />
 
-                <h:commandButton styleClass="btn btn-primary" action="create-student" value="new student"/>
+                <h:commandButton styleClass="btn btn-primary" action="student" value="new student"/>
 				
 
             </h:form>
