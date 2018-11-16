@@ -4,30 +4,21 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import de.fhws.app.business.student.boundary.StudentService;
 import de.fhws.app.business.student.entity.Student;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class StudentBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Student currentStudent = new Student();
-
-	@Inject
-	StudentListBean students;
 
 	StudentService service;
 
@@ -39,29 +30,16 @@ public class StudentBean implements Serializable {
 
 	@PostConstruct
 	void init() {
-		System.out.println("in init; em=" + em);
-		service = new StudentService(em);
+		service = new StudentService(em, tx);
 	}
 
 	public String load(long id) {
 		currentStudent = service.find(id);
-		
 		return "student";
 	}
 
 	public String save() {
-
-		try {
-			tx.begin();
-			em.persist(currentStudent);
-			tx.commit();
-		} catch (NotSupportedException | SystemException | SecurityException | IllegalStateException | RollbackException
-				| HeuristicMixedException | HeuristicRollbackException e) {
-			throw new RuntimeException(e);
-		}
-
-		students.addStudent(currentStudent);
-
+		currentStudent = service.save(currentStudent);
 		return "student-list?faces-redirect=true";
 
 	}
