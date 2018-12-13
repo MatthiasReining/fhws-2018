@@ -1,8 +1,7 @@
-package de.fhws.app.presentation.ejb;
+package de.fhws.app.presentation.showcase.ejb;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,18 +9,27 @@ import de.fhws.app.business.student.entity.ChangeLog;
 import de.fhws.app.business.student.entity.Student;
 
 @Stateless
-public class Ejb2 {
+public class Ejb1 {
+
 	@PersistenceContext
 	EntityManager em;
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public void run2() {
+	@EJB
+	Ejb2 ejb2;
 
-		Student s = em.find(Student.class, 2l);
+	public void run1() {
+
+		ejb2.run2();
+
+		Student s = em.find(Student.class, 1l);
 		ChangeLog cl = new ChangeLog();
-		cl.setAction("ejb2-test");
+		cl.setAction("ejb-test");
 		s.getChangeLogs().add(cl);
 
 		em.merge(s);
+
+		throw new BusinessException("No Access allowed for the current uesr");
+
 	}
+
 }

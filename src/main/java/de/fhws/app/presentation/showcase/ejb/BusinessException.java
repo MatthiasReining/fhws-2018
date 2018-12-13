@@ -1,4 +1,4 @@
-package de.fhws.app.presentation.ejb;
+package de.fhws.app.presentation.showcase.ejb;
 
 public class BusinessException extends RuntimeException{
 

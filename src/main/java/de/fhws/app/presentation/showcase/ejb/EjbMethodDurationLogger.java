@@ -1,4 +1,4 @@
-package de.fhws.app.presentation.ejb;
+package de.fhws.app.presentation.showcase.ejb;
 
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
