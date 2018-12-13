@@ -20,7 +20,7 @@ public class EdgeBlockerFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String userAgent = httpRequest.getHeader("User-Agent");
 
-		if (userAgent != null && userAgent.toLowerCase().contains("edge")) {
+		if (userAgent != null && userAgent.toLowerCase().contains("eXXXdge")) {
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.getWriter().println("Edge ist doof...");
 			httpResponse.setStatus(418);

@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.fhws.app.business.account.boundary.AccountService;
+import de.fhws.app.business.news.boundary.NewLogin;
 
 @SessionScoped
 @Named
@@ -19,9 +22,16 @@ public class LoginBean implements Serializable {
 	@EJB
 	AccountService account;
 
+	@Inject
+	@NewLogin
+	Event<String> newLoginEvent;
+
 	public String login() {
 
 		boolean loginOkay = account.checkCredentials(username, password);
+
+		if (loginOkay)
+			newLoginEvent.fire("New on stage: " + username);
 
 		return loginOkay ? "student-list?faces-redirect=true" : "";
 	}

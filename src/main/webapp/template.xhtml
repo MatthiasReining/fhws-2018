@@ -37,7 +37,40 @@
 	<div id="content" class="center_content">
 
 		<div class="container">
-			<ui:insert name="content">Content</ui:insert>
+			<div class="row">
+				<div class="col-sm">
+					<ui:insert name="content">Content</ui:insert>
+				</div>
+				<div class="col-sm">
+					<h1>Chatbox</h1>
+					<div id="chatBox"></div>
+					
+					Msg: <input type="text" id="chatmsg" />
+					<button onclick="sendMsg()">send</button>
+					<script>
+						let webSocket = new WebSocket(
+								"ws://localhost:8080/javaee-0.0.1-SNAPSHOT/chat");
+
+						function sendMsg() {
+							let chatMsg = document.querySelector('#chatmsg').value;
+							console.log(chatMsg);
+							webSocket.send(chatMsg);
+							document.querySelector('#chatmsg').value = '';
+							document.querySelector('#chatmsg').focus();
+						}
+
+						webSocket.onmessage = function(event) {
+							console.log(event);
+							document.querySelector('#chatBox').innerHTML += '<br/>'
+									+ event.data;
+							document.querySelector('#chatmsg').scrollIntoView();
+						}
+					</script>
+
+
+				</div>
+
+			</div>
 		</div>
 	</div>
 
