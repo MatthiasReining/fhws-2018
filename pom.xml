@@ -34,15 +34,16 @@
 		</dependency>
 
 		<!-- for CalculationClientApp -->
-		<!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-client-all -->
+		
+		<!-- https://mvnrepository.com/artifact/org.wildfly/wildfly-ejb-client-bom -->
 		<dependency>
-			<groupId>org.wildfly</groupId>
-			<artifactId>wildfly-client-all</artifactId>
-			<version>14.0.1.Final</version>
-			<scope>test</scope>
+		    <groupId>org.wildfly</groupId>
+		    <artifactId>wildfly-ejb-client-bom</artifactId>
+		    <version>14.0.1.Final</version>
+		    <type>pom</type>
+		    <scope>test</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.wildfly</groupId> <artifactId>wildfly-ejb-client-bom</artifactId> 
-			<type>pom</type> <version>14.0.1.Final</version> <scope>test</scope> </dependency> -->
+		
 	</dependencies>
 
 	<build>
