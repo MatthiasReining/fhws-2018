@@ -9,12 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-@NamedQueries(@NamedQuery(name = Account.FIND_BY_NAME, query = "Select a FROM Account a WHERE a.username = :"
-		+ Account.PARAM_USERNAME))
+@NamedQueries({ 
+	@NamedQuery(name = Account.FIND_BY_NAME, query = "Select a FROM Account a WHERE a.username = :"		+ Account.PARAM_USERNAME), 
+	@NamedQuery(name = Account.FIND_ALL, query = "Select a FROM Account a")
+})
 @Entity
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	public static final String FIND_ALL = "Account.findAll";
 	public static final String FIND_BY_NAME = "Account.FindByName";
 	public static final String PARAM_USERNAME = "Account_username";
 

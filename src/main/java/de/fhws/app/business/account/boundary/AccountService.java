@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import de.fhws.app.business.account.control.NoDataException;
 import de.fhws.app.business.account.entity.Account;
 import de.fhws.app.business.log.boundary.LogService;
 
@@ -36,7 +37,20 @@ public class AccountService {
 		return account;
 	}
 
+	public Account getAccount(String username) {
+		List<Account> list = em.createNamedQuery(Account.FIND_BY_NAME, Account.class)
+				.setParameter(Account.PARAM_USERNAME, username).getResultList();
+		if (list.isEmpty())
+			throw new NoDataException("account");
+
+		return list.get(0);
+	}
+
 	public List<Account> getAccounts() {
-		return null;
+		return em.createNamedQuery(Account.FIND_ALL, Account.class).getResultList();
+	}
+	
+	public Account createOrUpdate(Account account) {
+		return em.merge(account);		
 	}
 }

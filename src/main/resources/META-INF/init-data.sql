@@ -3,6 +3,8 @@ insert into Student(id, firstname, lastname, matriculationId) values (2, 'Moritz
 insert into changelog (id, action, modifiedtime, student_id) values (3, 'created', now(), 1);
 insert into changelog (id, action, modifiedtime, student_id) values (4, 'created', now(), 2);
 insert into account(id, username, password) values (5, 'max', 'max')
+insert into account(id, username, password) values (6, 'moritz', 'moritz')
+select HIBERNATE_SEQUENCE.NEXTVAL from dual;
 select HIBERNATE_SEQUENCE.NEXTVAL from dual;
 select HIBERNATE_SEQUENCE.NEXTVAL from dual;
 select HIBERNATE_SEQUENCE.NEXTVAL from dual;
