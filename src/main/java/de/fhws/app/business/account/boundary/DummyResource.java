@@ -34,6 +34,9 @@ public class DummyResource {
 	@GET
 	@Path("test")
 	public Response test() {
-		return Response.status(202).header("blub", "test").entity("test").build();
+		return Response.status(202)
+				.header("X-Total-Size", 5)
+				.entity("test")
+				.build();
 	}
 }
