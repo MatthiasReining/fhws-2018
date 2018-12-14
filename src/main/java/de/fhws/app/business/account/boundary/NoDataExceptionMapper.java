@@ -13,8 +13,8 @@ public class NoDataExceptionMapper implements ExceptionMapper<NoDataException> {
 	@Override
 	public Response toResponse(NoDataException exception) {
 		return Response
-				.status(Status.NO_CONTENT)
-				.entity("no data")
+				.status(Status.OK)
+				.entity("{\"cause\":\"no-data\",\"entity\":\""+exception.getMessage()+"\"}")
 				.build();
 	}
 
