@@ -1,17 +1,25 @@
 package de.fhws.app.business.log.boundary;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.inject.Inject;
 
 import de.fhws.app.business.log.boundary.LoggerProducerType.LoggerType;
 
-@Stateless
 public class LoggerFactory {
+
+	@Inject
+	private BeanManager beanManager;
 
 	@Produces
 	@LoggerProducerType(LoggerType.DB)
 	public Logger produceDBLogger() {
-		return new DbLogger(); // FIXME use managed SLSB class
+		Bean<DbLogger> bean = (Bean<DbLogger>) beanManager.getBeans(DbLogger.class).iterator().next();
+		CreationalContext<DbLogger> ctx = beanManager.createCreationalContext(bean);
+		DbLogger object = (DbLogger) beanManager.getReference(bean, DbLogger.class, ctx);
+		return object;
 	}
 
 	@Produces

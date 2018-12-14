@@ -32,7 +32,7 @@ public class AccountService {
 		if (!account.getPassword().equals(password))
 			return false;
 
-		//logService.log(username + " logged in");
+		logService.log(username + " logged in");
 		return true;
 	}
 

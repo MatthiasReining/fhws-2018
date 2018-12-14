@@ -25,7 +25,7 @@ public class JDBCTest {
 	@BeforeClass
 	public static void init() throws SQLException {
 		conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PW);
-		conn.createStatement().execute("DROP table test");
+		conn.createStatement().execute("DROP table test if exists");
 		conn.createStatement().execute("CREATE TABLE TEST(ID INT PRIMARY KEY, NAME VARCHAR(255))");
 		conn.setAutoCommit(false);
 	}
