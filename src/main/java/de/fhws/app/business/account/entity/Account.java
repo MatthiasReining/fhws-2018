@@ -1,5 +1,6 @@
 package de.fhws.app.business.account.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,8 +12,9 @@ import javax.persistence.NamedQuery;
 @NamedQueries(@NamedQuery(name = Account.FIND_BY_NAME, query = "Select a FROM Account a WHERE a.username = :"
 		+ Account.PARAM_USERNAME))
 @Entity
-public class Account {
+public class Account implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	public static final String FIND_BY_NAME = "Account.FindByName";
 	public static final String PARAM_USERNAME = "Account_username";
 

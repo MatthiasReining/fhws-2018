@@ -19,21 +19,21 @@ public class AccountService {
 	@Inject
 	LogService logService;
 
-	public boolean checkCredentials(String username, String password) {
+	public Account checkCredentials(String username, String password) {
 
 		List<Account> accounts = em.createNamedQuery(Account.FIND_BY_NAME, Account.class)
 				.setParameter(Account.PARAM_USERNAME, username).getResultList();
 
 		if (accounts.size() != 1)
-			return false;
+			return null;
 
 		Account account = accounts.get(0);
 
 		if (!account.getPassword().equals(password))
-			return false;
+			return null;
 
 		logService.log(username + " logged in");
-		return true;
+		return account;
 	}
 
 	public List<Account> getAccounts() {
